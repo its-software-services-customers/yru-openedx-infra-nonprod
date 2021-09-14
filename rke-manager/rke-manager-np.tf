@@ -5,6 +5,11 @@ terraform {
       version = "2.0.1"
     }
   }
+
+  backend "gcs" {
+    bucket  = "yru-nonprod-terraform-state-files"
+    prefix = "yru-openedx-rke-manager-nonprod"
+  }   
 }
 
 provider "vsphere" {
@@ -57,12 +62,12 @@ module "test-vm-01" {
   admin_password        = var.admin_password
   admin_user            = local.admin_user
   ssh-pub-key           = var.vm_public_key
-  ssh_ip_address        = "10.10.5.20"
+  ssh_ip_address        = "10.10.5.10"
   disk_thin_provisioned = true
   wait_for_guest_ip_timeout = 0
   wait_for_guest_net_timeout = 0
   #script_entry_dir = "/tmp"
 
-  network_configs       = [{index = 1, use_static_mac = false, mac_address = "", vm_ip = "10.10.5.20", vcenter_network_name = local.vm_network, vm_netmask = 24}]
+  network_configs       = [{index = 1, use_static_mac = false, mac_address = "", vm_ip = "10.10.5.10", vcenter_network_name = local.vm_network, vm_netmask = 24}]
   external_disks        = []
 }
