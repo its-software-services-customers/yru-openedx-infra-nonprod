@@ -31,13 +31,7 @@ sudo chmod 666 ${NTP_CONFIG}
 sudo echo "server ${NTP_SERVER} prefer" >> ${NTP_CONFIG}
 sudo chmod 644 ${NTP_CONFIG}
 
-#NTP
-#sudo systemctl stop chronyd
-#sudo systemctl disable chronyd
-#sudo systemctl enable ntpd.service
-#sudo systemctl start ntpd.service
-
-#sudo systemctl restart ntp
+sudo service ntp restart
 
 sudo ntpstat
 sudo ntpq -p
