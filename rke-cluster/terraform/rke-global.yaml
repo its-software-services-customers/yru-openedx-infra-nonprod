@@ -1,7 +1,7 @@
 config:
-  project: "gcp-dmp-devops"
-  stateBucket: "gcp-dmp-devops-terraform-state"
-  bucketPrefix: "rke-demo-sandbox-cluster"
+  project: "yru-general-apps"
+  stateBucket: "yru-nonprod-terraform-state-files"
+  bucketPrefix: "yru-openedx-rke-cluster-nonprod"
 
 providers:
   rke:
@@ -10,7 +10,7 @@ providers:
     logFile: "rke-cluster.log"
 
   vsphere: 
-    version: "1.26.0"
+    version: "2.0.1"
     user: ""
     password: ""
     vsphereServer: ""

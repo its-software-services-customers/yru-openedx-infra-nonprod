@@ -9,6 +9,7 @@ sudo docker run \
 -e IASC_VCS_URL='https://github.com/its-software-services-customers/yru-openedx-infra-nonprod.git' \
 -e IASC_VCS_REF=develop \
 -e IASC_VCS_FOLDER=rke-cluster \
+-e IASC_VAULT=gs://yru-openedx-vault/nonprod/secrets-nonprod.txt \
 -it gcr.io/its-artifact-commons/iasc:${VERSION} \
 init
 

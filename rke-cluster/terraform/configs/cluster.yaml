@@ -10,17 +10,17 @@ rkeConfig:
       global:
         insecure-flag: true
       virtual_center:
-        d2p-aaavcen01.tdmp-server.local:
+        10.10.2.25:
           user: ""
           password: ""
           port: 443
-          datacenters: TDMP-AAA-MTG8E-DC01
+          datacenters: HX-YRU-Datacenter
       workspace:
-        server: d2p-aaavcen01.tdmp-server.local
+        server: 10.10.2.25
         folder: "/" #This is not required in vSphere driver so set it to /
-        default-datastore: DS03_D2P-AAAVMSTOR01_NPRD_ANTHOS
-        datacenter: TDMP-AAA-MTG8E-DC01
-        resourcepool-path: Sandbox-Rancher
+        default-datastore: HCI-Datastore
+        datacenter: HX-YRU-Datacenter
+        resourcepool-path: OpenEdx-NonProd
 
   ingress:
     provider: nginx

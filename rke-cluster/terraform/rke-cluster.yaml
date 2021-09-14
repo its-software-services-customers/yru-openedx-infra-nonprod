@@ -1,21 +1,21 @@
 rkeCluster:
   vsphereProvisioner:
-    groupName: "rke-demo-sandbox"
+    groupName: "yru-rke-openedx-nonprod"
 
     vcHost: ""
-    vcDc: "TDMP-AAA-MTG8E-DC01"
-    vcDataStore: "DS03_D2P-AAAVMSTOR01_NPRD_ANTHOS"
-    vcPoolName: "Sandbox-Rancher"
+    vcDc: "HX-YRU-Datacenter"
+    vcDataStore: "HCI-Datastore"
+    vcPoolName: "OpenEdx-NonProd"
     vcVAppName: ""
-    vcCluster: "TDMP-AAA-CL02-NON-PROD"
+    vcCluster: "HX-YRU-Cluster"
     
     affinityRule:
       enabled: false
       affinityGroups: ['worker', 'master']
 
   cluster:
-    clusterYaml: "rke-normalized-cfg.yaml" #Render on the fly from rke-config.yaml
-    cluster_name: "rke-demo-sandbox"
+    clusterYaml: "rendered-rke-cfg.yaml" #Render on the fly from rke-config.yaml
+    cluster_name: "yru-rke-openedx-nonprod"
     kubernetes_version: "v1.20.8-rancher1-1"
     ignore_docker_version: true
     prefix_path: "/var/lib/toolbox/rke" #CoreOs need to use this path
@@ -29,121 +29,88 @@ rkeCluster:
       workerStatic:
         type: staticProvisioner
         localSshPrivateKeyPath: "id_rsa"
-        sshUser: "devops"
+        sshUser: "its"
 
       masterVsphere-001:
         type: vsphereProvisioner
-        terraformVmModule: "gcs::https://www.googleapis.com/storage/v1/tdg-terraform-modules/terraform-vsphere-vm/1.0.11/modules.zip//modules"      
-        vcenterTemplate: ""
+        terraformVmModule: "git::https://github.com/its-software-services-devops/tf-module-vsphere-vm.git//modules?ref=1.0.1"      
+        vcenterTemplate: "OPENEDX-RKE-NODE-TEMPLATE-UBT16-1"
         localProvisionerFile: "k8s-node-provisioner.bash"
         localSshPrivateKeyPath: "id_rsa"
         localSshPubKeyPath: "id_rsa.pub"
-        sshUser: "devops"
+        sshUser: "its"
         adminUser: "dummy"
         adminPassword: "fakEpassword"
         memorySize: 4096
         cpuNum: 4
-        guestId: "centos7_64Guest"
-        imageLibName: "PACKER_VM_TEMPLATE"
-        imageLibItemName: "vcenter-centos7-rke-20210702-1038"      
+        guestId: "ubuntu64Guest"
+        imageLibName: ""
+        imageLibItemName: ""
         disks:
           bootDiskSize: 75
-          externals:
-            - index: 1
-              diskSize: 20
+          externals: []
         networks:
           defaultNetworkIndex: 0
-          defaultGateWay: "10.100.103.254"
-          dnsList: '["172.22.192.1", "172.22.192.2"]'
+          defaultGateWay: "10.10.5.1"
+          dnsList: '["10.10.2.5" , "10.10.2.6"]'
           interfaces:
             - index: 1
-              vcNetwork: "ANTHOS_NPRD_USER_VLAN3303"
+              vcNetwork: "vm-network-105"
               netmask: 24
 
       workerVsphere-001:
         type: vsphereProvisioner
-        terraformVmModule: "gcs::https://www.googleapis.com/storage/v1/tdg-terraform-modules/terraform-vsphere-vm/1.0.11/modules.zip//modules"      
-        vcenterTemplate: ""
+        terraformVmModule: "git::https://github.com/its-software-services-devops/tf-module-vsphere-vm.git//modules?ref=1.0.1"      
+        vcenterTemplate: "OPENEDX-RKE-NODE-TEMPLATE-UBT16-1"
         localProvisionerFile: "k8s-node-provisioner.bash"
         localSshPrivateKeyPath: "id_rsa"
         localSshPubKeyPath: "id_rsa.pub"
-        sshUser: "devops"
+        sshUser: "its"
         adminUser: "dummy"
         adminPassword: "fakEpassword"
         memorySize: 4096
         cpuNum: 4
-        guestId: "centos7_64Guest"
-        imageLibName: "PACKER_VM_TEMPLATE"
-        imageLibItemName: "vcenter-centos7-rke-20210702-1038"      
-        disks:
-          bootDiskSize: 75
-          externals:
-            - index: 1
-              diskSize: 20
-        networks:
-          defaultNetworkIndex: 0
-          defaultGateWay: "10.100.103.254"
-          dnsList: '["172.22.192.1", "172.22.192.2"]'
-          interfaces:
-            - index: 1
-              vcNetwork: "ANTHOS_NPRD_USER_VLAN3303"
-              netmask: 24
-
-      workerVsphere-002:
-        type: vsphereProvisioner
-        terraformVmModule: "gcs::https://www.googleapis.com/storage/v1/tdg-terraform-modules/terraform-vsphere-vm/1.0.11/modules.zip//modules"      
-        vcenterTemplate: ""
-        localProvisionerFile: "k8s-node-provisioner.bash"
-        localSshPrivateKeyPath: "id_rsa"
-        localSshPubKeyPath: "id_rsa.pub"
-        sshUser: "devops"
-        adminUser: "dummy"
-        adminPassword: "fakEpassword"
-        memorySize: 4096
-        cpuNum: 4
-        guestId: "centos7_64Guest"
-        imageLibName: "PACKER_VM_TEMPLATE"
-        imageLibItemName: "vcenter-centos7-rke-20210702-1038"      
+        guestId: "ubuntu64Guest"
+        imageLibName: ""
+        imageLibItemName: ""      
         disks:
           bootDiskSize: 100
-          externals:
-            - index: 1
-              diskSize: 20
+          externals: []
         networks:
           defaultNetworkIndex: 0
-          defaultGateWay: "10.100.103.254"
-          dnsList: '["172.22.192.1", "172.22.192.2"]'
+          defaultGateWay: "10.10.5.1"
+          dnsList: '["10.10.2.5" , "10.10.2.6"]'
           interfaces:
             - index: 1
-              vcNetwork: "ANTHOS_NPRD_USER_VLAN3303"
+              vcNetwork: "vm-network-105"
               netmask: 24
 
     # Instances
     instances:
-      - host: "aaa1d-rke-demo-master-01"
-        ip: ["10.100.103.71"]
+      - host: "rke-openedx-nonprod-master-01"
+        ip: ["10.10.5.11"]
         profile: "masterVsphere-001"
         mode: "register" # register, unregister, remove
         role: '["controlplane", "etcd"]'
         antiAffinityGroup: master
 
       #=========================
-      - host: "aaa1d-rke-demo-worker-01"
-        ip: ["10.100.103.76"]
+      - host: "rke-openedx-nonprod-worker-01"
+        ip: ["10.10.5.21"]
         profile: "workerVsphere-001"
         mode: "register"
         role: '["worker"]'
         antiAffinityGroup: worker
 
-      - host: "aaa1d-rke-demo-worker-02"
-        ip: ["10.100.103.77"]
+      - host: "rke-openedx-nonprod-worker-02"
+        ip: ["10.10.5.22"]
         profile: "workerVsphere-002"
         mode: "register"
         role: '["worker"]'
         antiAffinityGroup: worker
 
-      - host: "aaa1d-rke-demo-worker-03"
-        ip: ["10.100.103.78"]
+      - host: "rke-openedx-nonprod-worker-03"
+        ip: ["10.10.5.23"]
         profile: "workerVsphere-001"
         mode: "register"
         role: '["worker"]'
