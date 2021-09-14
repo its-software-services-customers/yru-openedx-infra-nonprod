@@ -72,7 +72,7 @@ rkeCluster:
         cpuNum: 4
         guestId: "ubuntu64Guest"
         imageLibName: ""
-        imageLibItemName: ""      
+        imageLibItemName: ""
         disks:
           bootDiskSize: 100
           externals: []
