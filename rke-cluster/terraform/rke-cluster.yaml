@@ -18,7 +18,7 @@ rkeCluster:
     cluster_name: "yru-rke-openedx-nonprod"
     kubernetes_version: "v1.20.8-rancher1-1"
     ignore_docker_version: true
-    prefix_path: "/var/lib/toolbox/rke" #CoreOs need to use this path
+    #prefix_path: "/var/lib/toolbox/rke" #CoreOs need to use this path
 
     outputs:
       - kube_config_yaml      

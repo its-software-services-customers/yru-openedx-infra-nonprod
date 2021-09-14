@@ -37,6 +37,8 @@ sudo chmod 644 ${NTP_CONFIG}
 #sudo systemctl enable ntpd.service
 #sudo systemctl start ntpd.service
 
-#sudo ntpstat
-#sudo ntpq -p
-#sudo timedatectl status
+#sudo systemctl restart ntp
+
+sudo ntpstat
+sudo ntpq -p
+sudo timedatectl status
