@@ -30,7 +30,7 @@ charts:
 
 
 copy:
-  - from: gs://yru-openedx-vault/nonprod/id_rsa*
+  - from: gs://${SEC.GCS_VAULT_BUCKET}/nonprod/id_rsa*
     toDir: ""
 
   - from: terraform/scripts/*
