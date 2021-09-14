@@ -104,7 +104,7 @@ rkeCluster:
 
       - host: "rke-openedx-nonprod-worker-02"
         ip: ["10.10.5.22"]
-        profile: "workerVsphere-002"
+        profile: "workerVsphere-001"
         mode: "register"
         role: '["worker"]'
         antiAffinityGroup: worker
