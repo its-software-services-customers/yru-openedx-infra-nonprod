@@ -90,7 +90,7 @@ rkeCluster:
       - host: "rke-openedx-nonprod-master-01"
         ip: ["10.10.5.11"]
         profile: "masterVsphere-001"
-        mode: "unregister" # register, unregister, remove
+        mode: "register" # register, unregister, remove
         role: '["controlplane", "etcd"]'
         antiAffinityGroup: master
 
@@ -98,20 +98,20 @@ rkeCluster:
       - host: "rke-openedx-nonprod-worker-01"
         ip: ["10.10.5.21"]
         profile: "workerVsphere-001"
-        mode: "unregister"
+        mode: "register"
         role: '["worker"]'
         antiAffinityGroup: worker
 
       - host: "rke-openedx-nonprod-worker-02"
         ip: ["10.10.5.22"]
         profile: "workerVsphere-001"
-        mode: "unregister"
+        mode: "register"
         role: '["worker"]'
         antiAffinityGroup: worker
 
       - host: "rke-openedx-nonprod-worker-03"
         ip: ["10.10.5.23"]
         profile: "workerVsphere-001"
-        mode: "unregister"
+        mode: "register"
         role: '["worker"]'
         antiAffinityGroup: worker
