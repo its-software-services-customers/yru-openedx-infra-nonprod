@@ -33,7 +33,7 @@ rkeCluster:
 
       masterVsphere-001:
         type: vsphereProvisioner
-        terraformVmModule: "git::https://github.com/its-software-services-devops/tf-module-vsphere-vm.git//modules?ref=1.0.1"      
+        terraformVmModule: "git::https://github.com/its-software-services-devops/tf-module-vsphere-vm.git//modules?ref=1.0.2"      
         vcenterTemplate: "OPENEDX-RKE-NODE-TEMPLATE-UBT16-1"
         localProvisionerFile: "k8s-node-provisioner.bash"
         localSshPrivateKeyPath: "id_rsa"
@@ -60,7 +60,7 @@ rkeCluster:
 
       workerVsphere-001:
         type: vsphereProvisioner
-        terraformVmModule: "git::https://github.com/its-software-services-devops/tf-module-vsphere-vm.git//modules?ref=1.0.1"      
+        terraformVmModule: "git::https://github.com/its-software-services-devops/tf-module-vsphere-vm.git//modules?ref=1.0.2"      
         vcenterTemplate: "OPENEDX-RKE-NODE-TEMPLATE-UBT16-1"
         localProvisionerFile: "k8s-node-provisioner.bash"
         localSshPrivateKeyPath: "id_rsa"
