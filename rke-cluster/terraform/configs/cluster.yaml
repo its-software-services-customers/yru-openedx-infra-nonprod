@@ -3,7 +3,7 @@ global:
 
 rkeConfig:
   addons_include: []
-    
+
   cloud_provider:
     name: vsphere
     vsphereCloudProvider:
