@@ -33,6 +33,5 @@ sudo chmod 644 ${NTP_CONFIG}
 
 sudo service ntp restart
 
-sudo ntpstat
 sudo ntpq -p
 sudo timedatectl status
