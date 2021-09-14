@@ -36,9 +36,6 @@ copy:
   - from: terraform/scripts/*
     toDir: ""
 
-  - from: terraform/*.tf
-    toDir: ""
-
 infraIasc:
   - valuesFiles: [terraform/rke-global.yaml, terraform/rke-cluster.yaml]
     transformer: yaml2tf
@@ -59,6 +56,6 @@ infraIasc:
 
   - valuesFiles: [terraform/configs/cluster.yaml]
     alias: rendered-rke-cfg
-    values: []
-#    - --set-string rkeConfig.cloud_provider.vsphereCloudProvider.virtual_center."10\.10\.2\.25".user=${SEC.VCENTER_USER}
-#    - --set-string rkeConfig.cloud_provider.vsphereCloudProvider.virtual_center."10\.10\.2\.25".password=${SEC.VCENTER_PASSWORD}
+    values:
+    - --set-string rkeConfig.cloud_provider.vsphereCloudProvider.virtual_center."10\.10\.2\.25".user=${SEC.VCENTER_USER}
+    - --set-string rkeConfig.cloud_provider.vsphereCloudProvider.virtual_center."10\.10\.2\.25".password=${SEC.VCENTER_PASSWORD}
