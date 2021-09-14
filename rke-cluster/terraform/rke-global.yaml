@@ -1,0 +1,16 @@
+config:
+  project: "gcp-dmp-devops"
+  stateBucket: "gcp-dmp-devops-terraform-state"
+  bucketPrefix: "rke-demo-sandbox-cluster"
+
+providers:
+  rke:
+    source: "rancher/rke"
+    version: "1.2.3"
+    logFile: "rke-cluster.log"
+
+  vsphere: 
+    version: "1.26.0"
+    user: ""
+    password: ""
+    vsphereServer: ""
