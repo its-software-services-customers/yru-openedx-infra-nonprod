@@ -34,7 +34,7 @@ locals {
   test_provisioner = "provision-manager.bash"
   admin_user    = "yruadmin"
   guest_id      = "ubuntu64Guest"
-  dns_list      = ["10.10.5.1"]
+  dns_list      = ["10.10.2.5" , "10.10.2.6"]
   lib_name      = ""
 
   lib_item_name = ""
