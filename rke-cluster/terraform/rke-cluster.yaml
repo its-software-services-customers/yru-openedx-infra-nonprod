@@ -137,4 +137,3 @@ rkeCluster:
         mode: "register"
         role: '["worker"]'
         antiAffinityGroup: worker
-        
