@@ -39,6 +39,7 @@ locals {
 
   lib_item_name = ""
   vcenter_template_or_vm_name = "OPENEDX-RKE-MNGR-TEMPLATE-UBT16-1"
+  vcenter_template_or_vm_name2 = "OPENEDX-RKE-MNGR-TEMPLATE-UBT20-1"
 }
 
 module "test-vm-01" {
@@ -71,3 +72,36 @@ module "test-vm-01" {
   network_configs       = [{index = 1, use_static_mac = false, mac_address = "", vm_ip = "10.10.5.10", vcenter_network_name = local.vm_network, vm_netmask = 24}]
   external_disks        = []
 }
+
+/*
+module "test-vm-02" {
+  source                = "git::https://github.com/its-software-services-devops/tf-module-vsphere-vm.git//modules?ref=1.0.1"
+  vm_host               = "yru-np-rke-manager-02"
+  vcenter_vm_name       = "yru-np-rke-manager-02"
+  vcenter_vapp_name     = ""
+  vm_gateway            = local.gateway
+  vm_guest_id           = local.guest_id
+  vm_dns_list           = local.dns_list
+  num_cpus              = local.num_cpus
+  memory_size           = local.memory_size
+  disk_size             = local.disk_size
+  vcenter_datastore     = local.vm_datastore
+  vcenter_pool_name     = local.vm_poolname
+  vcenter_dc_name       = local.vm_dc_name
+  vcenter_library_name        = local.lib_name
+  vcenter_library_item_name   = local.lib_item_name
+  provisioner_script          = local.test_provisioner
+  vcenter_template_or_vm_name = local.vcenter_template_or_vm_name2
+  admin_password        = var.admin_password
+  admin_user            = local.admin_user
+  ssh-pub-key           = var.vm_public_key
+  ssh_ip_address        = "10.10.5.9"
+  disk_thin_provisioned = true
+  wait_for_guest_ip_timeout = 0
+  wait_for_guest_net_timeout = 0
+  #script_entry_dir = "/tmp"
+
+  network_configs       = [{index = 1, use_static_mac = false, mac_address = "", vm_ip = "10.10.5.9", vcenter_network_name = local.vm_network, vm_netmask = 24}]
+  external_disks        = []
+}
+*/
